@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="note_signing_app.MainPage">
+
+    <ScrollView BackgroundColor="#0345a1">
+        <VerticalStackLayout Spacing="20" Padding="20,0, 20, 20" VerticalOptions="Start" HorizontalOptions="Fill">
+            <Image Source="logoprodatasemfundo.png" Aspect="AspectFit" HeightRequest="90" WidthRequest="200" Margin="0,-20,0,-40"/>
+            
+            <!-- FORMULARIO: FILIAL, SERIE E NOTA -->
+            <Border Stroke="#E0E0E0" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="#FAFAFA" Padding="20">
+                <VerticalStackLayout Spacing="2" Margin="0,-10, 0, 0" HorizontalOptions="Center">
+                    <Label Text="Dados da Nota" FontSize="18" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold"/>
+                    <HorizontalStackLayout Spacing="5" VerticalOptions="Center">
+                        <Label Text="Filial: " FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" />
+                        <Entry x:Name="FilialEntry" Placeholder="Insira a Filial" TextColor="Black" MaxLength="2" ClearButtonVisibility="WhileEditing" WidthRequest="150"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5" VerticalOptions="Center">
+                        <Label Text="Série: " FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+                        <Entry x:Name="SerieEntry" Placeholder="Insira a Série" TextColor="Black" MaxLength="3" ClearButtonVisibility="WhileEditing" WidthRequest="150"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5" VerticalOptions="Center">
+                        <Label Text="Nota: " FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+                        <Entry x:Name="NotaEntry" Placeholder="Insira a Nota"  TextColor="Black" MaxLength="9" ClearButtonVisibility="WhileEditing" WidthRequest="150"/>
+                    </HorizontalStackLayout>
+                    <Button Text="Consultar" FontAttributes="Bold"  BackgroundColor="Black"  TextColor="White" Clicked="OnConsultarClicked"/>
+                </VerticalStackLayout>     
+            </Border>
+
+            <!-- RESULTADO (SOMENTE LEITURA) -->
+            <Border x:Name="ResultadoBorder" Stroke="#E0E0E0" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="#FAFAFA" Padding="20" IsVisible="False">
+                <VerticalStackLayout Spacing="12" Margin="0,-10, 0, 0">
+                    <Label Text="Resultado da Consulta" FontSize="18" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center"/>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Número da Nota: " FontAttributes="Bold" TextColor="Black" />
+                        <Label x:Name="NumeroNotaLabel" TextColor="Black"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Cliente: " FontAttributes="Bold" TextColor="Black"/>
+                        <Label x:Name="NomeClienteLabel" TextColor="Black"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Data de Emissão: " FontAttributes="Bold" TextColor="Black"/>
+                        <Label x:Name="DataEmissaoLabel" TextColor="Black"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border x:Name="InformacoesUsuario" Stroke="#E0E0E0" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="#FAFAFA" Padding="20" IsVisible="False">
+                <VerticalStackLayout Spacing="1" Margin="0,-10, 0, 0">
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Nome: " FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+                        <Entry x:Name="NomeUsuarioEntry" Placeholder="Nome Completo" TextColor="Black" MaxLength="30" ClearButtonVisibility="WhileEditing" TextChanged="OnUserInfoChanged" WidthRequest="200"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="RG: " FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+                        <Entry x:Name="RgEntry" Placeholder="Insira seu RG" TextColor="Black" MaxLength="10"  ClearButtonVisibility="WhileEditing" TextChanged="OnUserInfoChanged" WidthRequest="200"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border x:Name="SignatureBorder" Stroke="#E0E0E0" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="#FAFAFA" Padding="15" IsVisible="False">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Assinatura" FontSize="18" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center"/>
+                    <Label x:Name="SignatureHint" Text="⚠️ Preencha Nome e RG para habilitar a assinatura" TextColor="Red" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <toolkit:DrawingView 
+                         x:Name="SignaturePad"
+                         HeightRequest="150"
+                         LineColor="Black"
+                         LineWidth="3"
+                         BackgroundColor="White"
+                         IsMultiLineModeEnabled="True"
+                         ShouldClearOnFinish="False"
+                         IsEnabled="False"
+                         Opacity="0.5"
+                         DrawingLineCompleted="OnDrawingLineCompleted"/>
+
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Button x:Name="ClearSignatureBtn"
+                             Text="Limpar" 
+                             BackgroundColor="Gray" 
+                             TextColor="White"
+                             IsEnabled="False"
+                             Clicked="OnClearSignatureClicked"/>
+                        
+                        <Button x:Name="SubmitBtn"
+                             Text="Enviar" 
+                             BackgroundColor="Black" 
+                             TextColor="White"
+                             IsEnabled="False"
+                             Clicked="OnSubmitClicked"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
