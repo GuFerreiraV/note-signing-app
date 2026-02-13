@@ -16,7 +16,7 @@ This is a cross-platform mobile application built with .NET MAUI for signing fis
 
 ## Technologies Used
 
-- .NET MAUI 10.0
+- .NET MAUI 9.0
 - C#
 - Entity Framework Core
 - Oracle Database
