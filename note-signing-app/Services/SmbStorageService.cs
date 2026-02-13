@@ -9,9 +9,9 @@ namespace note_signing_app.Services
         // =========================================================
         // CONFIGURAÇÕES DO SERVIDOR (PREENCHA AQUI)
         // =========================================================
-        private const string SERVER_IP = "172.17.10.62"; // IP do seu servidor onde está o drive E:
-        private const string USERNAME = "gustavo.vargens";      // Usuário do Windows/AD com permissão de escrita
-        private const string PASSWORD = "Prodata*2026";      // Senha do usuário
+        private const string SERVER_IP = " "; // IP do seu servidor onde está o drive E:
+        private const string USERNAME = " ";      // Usuário do Windows/AD com permissão de escrita
+        private const string PASSWORD = " ";      // Senha do usuário
         private const string SHARE_NAME = "App_Assinaturas_NFs"; // O NOME DO COMPARTILHAMENTO (Não é o caminho E:\...)
         private const string SUBFOLDER = "comprovantes"; // A subpasta dentro do compartilhamento
         // =========================================================
